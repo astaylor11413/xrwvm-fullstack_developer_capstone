@@ -124,3 +124,52 @@ img{
     text-align:center;
     box-shadow: 2px 2px 3px #999;  
 }
+
+.horizontal {
+    width: 100%;
+    border: 1px solid black;
+}
+.contact {
+    align-self: center;
+    color:#FFF;
+    border-radius:50px;
+    text-align:center;
+    box-shadow: 2px 2px 3px #999; 
+    flex: 1;
+    padding: 20px;
+    display: flex;  
+    flex-direction: column;
+    margin-left:5%;
+    margin-right:5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.contact_img {
+    align-self: center;
+    width:40px;
+    color:#FFF;
+    border-radius:50px;
+    text-align:center;
+    box-shadow: 2px 2px 3px #999; 
+    flex: 1;
+    padding: 20px;
+}
+
+.contact_text {
+    flex: 1;
+}
+
+h3{
+    color:#0C9;
+    text-decoration: underline;
+    text-align: center;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+h4{
+    color:#0C9;
+    text-align: center;
+    padding-left: 20px;
+}
