@@ -24,7 +24,7 @@ urlpatterns = [
     path(route='get_cars', view=views.get_cars, name ='getcars'),
 
     #paths for get all dealers and get all dealers from a chosen state
-    path(route='get_dealers', view=views.get_dealerships, name='get_dealers'),
+    path(route='get_dealers/', view=views.get_dealerships, name='get_dealers'),
     path(route='get_dealers/<str:state>', view=views.get_dealerships, name='dealers_by_state'),
 
     #path for retrieving all dealer details for a dealer based on their dealer id
