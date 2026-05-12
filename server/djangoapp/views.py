@@ -56,7 +56,7 @@ def registration(request):
         User.objects.get(username=username)
         return JsonResponse(
             {
-                "userName": username, 
+                "userName": username,
                 "error": "Already Registered"
             }
         )
@@ -73,7 +73,7 @@ def registration(request):
         # data = {"userName": username, "status": "Authenticated"}
         return JsonResponse(
             {
-                "userName": username, 
+                "userName": username,
                 "status": "Authenticated"
             }
         )
@@ -124,14 +124,14 @@ def get_dealer_details(request, dealer_id):
 # def add_review(request):
 #    if not request.user.is_anonymous:  # authenticated user
 #        request body includes submitted review
-#        data = json.loads(request.body)  
+#        data = json.loads(request.body)
 #        try:
 #            response = post_review(data)
 #            return JsonResponse({"status": 200})
 #        except:
 #            return JsonResponse(
 #               {
-#                   "status": 401, 
+#                   "status": 401,
 #                   "message": "Error in posting review"
 #               }
 #           )
@@ -145,7 +145,7 @@ def add_review(request):
         response = post_review(data)
         return JsonResponse(
             {
-                "message": "Review posted successfully", 
+                "message": "Review posted successfully",
                 "response": response
             }, status=200
         )
@@ -174,7 +174,7 @@ def get_cars(request):
     for car_model in car_models:
         cars.append(
             {
-                "CarModel": car_model.name, 
+                "CarModel": car_model.name,
                 "CarMake": car_model.car_make.name
             }
         )
