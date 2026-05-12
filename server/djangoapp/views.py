@@ -163,8 +163,10 @@ def add_review(request):
 def get_cars(request):
     count = CarMake.objects.filter().count()
     print(count)
-    if CarMake.objects.filter().count() == 0 or
-     CarModel.objects.filter().count() == 0:
+    if (
+        CarMake.objects.filter().count() == 0 or
+        CarModel.objects.filter().count() == 0
+    ):
         initiate()
     print(CarModel.objects.count())
     car_models = CarModel.objects.select_related("car_make")
