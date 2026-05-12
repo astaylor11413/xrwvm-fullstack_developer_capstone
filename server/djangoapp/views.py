@@ -54,7 +54,12 @@ def registration(request):
     # email_exist = False
     try:
         User.objects.get(username=username)
-        return JsonResponse({"userName": username, "error": "Already Registered"})
+        return JsonResponse(
+            {
+                "userName": username, 
+                "error": "Already Registered"
+            }
+        )
     except User.DoesNotExist:
         logger.debug("{} is a new user".format(username))
         user = User.objects.create_user(
@@ -66,7 +71,12 @@ def registration(request):
         )
         login(request, user)
         # data = {"userName": username, "status": "Authenticated"}
-        return JsonResponse({"userName": username, "status": "Authenticated"})
+        return JsonResponse(
+            {
+                "userName": username, 
+                "status": "Authenticated"
+            }
+        )
 
 
 # if not username_exist:
@@ -76,7 +86,7 @@ def registration(request):
 # return JsonResponse(data)
 
 
-# Update the `get_dealerships` render list of dealerships all by default, particular state if state is passed
+# Update `get_dealerships` list by default or state if state is passed
 def get_dealerships(request, state="All"):
     if state == "All":
         endpoint = "/fetchDealers"
@@ -113,12 +123,18 @@ def get_dealer_details(request, dealer_id):
 # Create a `add_review` view to submit a review
 # def add_review(request):
 #    if not request.user.is_anonymous:  # authenticated user
-#        data = json.loads(request.body)  # request body includes submitted review
+#        request body includes submitted review
+#        data = json.loads(request.body)  
 #        try:
 #            response = post_review(data)
 #            return JsonResponse({"status": 200})
 #        except:
-#            return JsonResponse({"status": 401, "message": "Error in posting review"})
+#            return JsonResponse(
+#               {
+#                   "status": 401, 
+#                   "message": "Error in posting review"
+#               }
+#           )
 #    else:
 #        return JsonResponse({"status": 403, "message": "Unauthorized"})
 def add_review(request):
@@ -128,10 +144,17 @@ def add_review(request):
     try:
         response = post_review(data)
         return JsonResponse(
-            {"message": "Review posted successfully", "response": response}, status=200
+            {
+                "message": "Review posted successfully", 
+                "response": response
+            }, status=200
         )
     except ConnectionError:
-        return JsonResponse({"message": "Database connection failed"}, status=500)
+        return JsonResponse(
+            {
+                "message": "Database connection failed"
+            }, status=500
+        )
     except Exception as error:
         return JsonResponse({"message": str(error)}, status=500)
 
@@ -140,11 +163,17 @@ def add_review(request):
 def get_cars(request):
     count = CarMake.objects.filter().count()
     print(count)
-    if CarMake.objects.filter().count() == 0 or CarModel.objects.filter().count() == 0:
+    if CarMake.objects.filter().count() == 0 or
+     CarModel.objects.filter().count() == 0:
         initiate()
     print(CarModel.objects.count())
     car_models = CarModel.objects.select_related("car_make")
     cars = []
     for car_model in car_models:
-        cars.append({"CarModel": car_model.name, "CarMake": car_model.car_make.name})
+        cars.append(
+            {
+                "CarModel": car_model.name, 
+                "CarMake": car_model.car_make.name
+            }
+        )
     return JsonResponse({"CarModels": cars})
